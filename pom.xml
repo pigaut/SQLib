@@ -7,7 +7,7 @@
     <groupId>com.github.pigaut.lib.sql</groupId>
     <artifactId>SQLib</artifactId>
     <version>1.0</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>SQL Library</name>
     <url>https://github.com/pigaut/SQLib</url>
 
