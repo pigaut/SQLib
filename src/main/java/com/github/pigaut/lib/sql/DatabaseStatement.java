@@ -2,9 +2,6 @@ package com.github.pigaut.lib.sql;
 
 import com.github.pigaut.lib.sql.database.statement.*;
 
-/**
- * The DatabaseStatement interface represents a database statement with parameterized operations.
- */
 public interface DatabaseStatement {
 
     /**
@@ -23,6 +20,11 @@ public interface DatabaseStatement {
      * @return the updated SimpleDatabaseStatement object
      */
     DatabaseStatement addOption(StatementOption option);
+
+    /**
+     * Removes all options for this statement.
+     */
+    void clearOptions();
 
     /**
      * Adds a batch operation to the statement.

@@ -1,10 +1,5 @@
 package com.github.pigaut.lib.sql;
 
-/**
- * The DataTable interface provides methods to interact with a specific table
- * in a database, enabling operations such as table management, data manipulation,
- * and querying.
- */
 public interface DataTable {
 
     /**
@@ -106,21 +101,6 @@ public interface DataTable {
      * </pre>
      */
     void addColumn(String columnDefinition);
-
-    /**
-     * Drops a column from the table.
-     *
-     * @param column the name of the column to drop.
-     *
-     * Example:
-     * <pre>
-     * {@code
-     * dataTable.dropColumn("age");
-     * // SQL: "ALTER TABLE table_name DROP age;"
-     * }
-     * </pre>
-     */
-    void dropColumn(String column);
 
     /**
      * Renames a column in the table.

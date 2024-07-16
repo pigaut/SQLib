@@ -7,6 +7,8 @@
     <groupId>com.github.pigaut.sqlib</groupId>
     <artifactId>SQLibPlugin</artifactId>
     <version>1.0</version>
+    <name>SQL Library Plugin</name>
+    <url>https://github.com/pigaut/SQLib</url>
 
     <dependencies>
         <dependency>

@@ -54,8 +54,8 @@ public class SimpleDatabase implements Database {
     }
 
     @Override
-    public boolean execute(String sql) {
-        return executeStatement(statement -> statement.execute(sql));
+    public void execute(String sql) {
+        executeStatement(statement -> statement.execute(sql));
     }
 
     @Override

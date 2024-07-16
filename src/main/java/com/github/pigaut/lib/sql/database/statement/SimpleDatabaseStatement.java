@@ -30,6 +30,12 @@ public class SimpleDatabaseStatement implements DatabaseStatement {
     }
 
     @Override
+    public void clearOptions() {
+        options.clear();
+        currentParameter = 1;
+    }
+
+    @Override
     public DatabaseStatement addBatch() {
         options.add(PreparedStatement::addBatch);
         currentParameter = 1;

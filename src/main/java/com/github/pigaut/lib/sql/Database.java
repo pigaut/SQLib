@@ -4,11 +4,6 @@ import com.github.pigaut.lib.sql.database.statement.*;
 
 import javax.sql.*;
 
-/**
- * The Database interface represents a database connection and provides methods
- * to interact with the database, such as executing SQL queries and updates,
- * accessing data sources, and retrieving specific DataTable instances.
- */
 public interface Database {
 
     /**
@@ -19,14 +14,14 @@ public interface Database {
     String getName();
 
     /**
-     * Retrieves the DataSource associated with this database connection.
+     * Retrieves the DataSource associated with this database.
      *
      * @return The DataSource instance used for database connections.
      */
     DataSource getDataSource();
 
     /**
-     * Retrieves a DataTable instance associated with the specified table name.
+     * Creates a DataTable with the specified table name (may not exist in the database).
      *
      * @param name The name of the table.
      * @return A DataTable instance representing the specified table.
@@ -37,9 +32,8 @@ public interface Database {
      * Executes a SQL statement against the database.
      *
      * @param sql The SQL statement to execute.
-     * @return true if the execution was successful; false otherwise.
      */
-    boolean execute(String sql);
+    void execute(String sql);
 
     /**
      * Executes an SQL statement that may modify the database (such as INSERT, UPDATE, DELETE).
@@ -53,7 +47,7 @@ public interface Database {
      * Executes a large update SQL statement that may modify the database.
      *
      * @param sql The SQL statement to execute.
-     * @return The number of rows affected by the statement as a long value.
+     * @return The number of rows affected by the statement.
      */
     long executeLargeUpdate(String sql);
 
