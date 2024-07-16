@@ -1,5 +1,6 @@
 main: com.github.pigaut.sqlib.SQLibPlugin
 name: SQLib
 author: pigaut
+description: ${project.description}
 version: 1.0
 api-version: 1.13
