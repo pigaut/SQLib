@@ -24,7 +24,12 @@ public class SimpleDatabase implements Database {
 
     @Override
     public GenericDataTable tableOf(String name) {
-        return new GenericDataTable(this, name);
+        return new GenericDataTable(name, this);
+    }
+
+    @Override
+    public DatabaseStatement createStatement(String sql) {
+        return new GenericDatabaseStatement(this, sql);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package io.github.pigaut.sqlib;
 
+import io.github.pigaut.lib.sql.*;
+import org.bukkit.*;
 import org.bukkit.plugin.java.*;
 
 public class SQLibPlugin extends JavaPlugin {
@@ -7,7 +9,7 @@ public class SQLibPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
 //        // Creates a sqlite database in the plugin folder
-//        Database database = SQLib.createDatabase(this, "database");
+//        Database database = SQLib.createDatabase(getDataFolder(), "database");
 //        //Creates a datatable object for this database
 //        DataTable playersTable = database.tableOf("players");
 //
@@ -16,7 +18,7 @@ public class SQLibPlugin extends JavaPlugin {
 //
 //            // SQL: CREATE TABLE IF NOT EXISTS players (id INTEGER PRIMARY KEY, name VARCHAR(30), coins INT);
 //            playersTable.createIfNotExists(
-//                    "id INTEGER PRIMARY KEY",
+//                    "id INT PRIMARY KEY",
 //                    "name VARCHAR(30)",
 //                    "coins INT");
 //
@@ -64,6 +66,7 @@ public class SQLibPlugin extends JavaPlugin {
 //                    int id = resultSet.getInt(1);
 //                    String name = resultSet.getString(2);
 //                    int coins = resultSet.getInt(3);
+//                    System.out.println("id : " + id + " name: " + name + " coins: " + coins);
 //                }
 //            });
 //

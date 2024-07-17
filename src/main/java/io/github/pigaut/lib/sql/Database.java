@@ -29,6 +29,14 @@ public interface Database {
     DataTable tableOf(String name);
 
     /**
+     * Creates a statement for this database with the given sql
+     *
+     * @param sql the sql statement
+     * @return a new DatabaseStatement
+     */
+    DatabaseStatement createStatement(String sql);
+
+    /**
      * Executes a SQL statement against the database.
      *
      * @param sql The SQL statement to execute.

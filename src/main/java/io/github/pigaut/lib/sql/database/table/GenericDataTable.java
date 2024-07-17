@@ -7,12 +7,12 @@ import java.util.*;
 
 public class GenericDataTable implements DataTable {
 
-    private final Database database;
     private String tableName;
+    private final Database database;
 
-    public GenericDataTable(Database database, String tableName) {
-        this.database = database;
+    public GenericDataTable(String tableName, Database database) {
         this.tableName = tableName;
+        this.database = database;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class GenericDataTable implements DataTable {
     @Override
     public DatabaseStatement insert(String clause) {
         String sql = String.format(StatementTemplates.INSERT, tableName, clause);
-        return new SimpleDatabaseStatement(database, sql);
+        return new GenericDatabaseStatement(database, sql);
     }
 
     @Override
@@ -81,66 +81,66 @@ public class GenericDataTable implements DataTable {
         String columnsDef = String.join(", ", columns);
         String values = String.join(", ", Collections.nCopies(columns.length, "?"));
         String insertIntoSQL = String.format(StatementTemplates.INSERT_COLUMNS, tableName, columnsDef, values);
-        return new SimpleDatabaseStatement(database, insertIntoSQL);
+        return new GenericDatabaseStatement(database, insertIntoSQL);
     }
 
     @Override
     public DatabaseStatement insertAll(String... values) {
         String valuesDef = String.join(", ", values);
         String insertIntoSQL = String.format(StatementTemplates.INSERT_ALL, tableName, valuesDef);
-        return new SimpleDatabaseStatement(database, insertIntoSQL);
+        return new GenericDatabaseStatement(database, insertIntoSQL);
     }
 
     @Override
     public DatabaseStatement insertAll(int parameters) {
         String values = String.join(", ", Collections.nCopies(parameters, "?"));
         String insertIntoSQL = String.format(StatementTemplates.INSERT_ALL, tableName, values);
-        return new SimpleDatabaseStatement(database, insertIntoSQL);
+        return new GenericDatabaseStatement(database, insertIntoSQL);
     }
 
     @Override
     public DatabaseStatement set(String clause, String... modifications) {
         String modificationsDef = String.join(", ", modifications);
         String updateSQL = String.format(StatementTemplates.SET_EACH, tableName, modificationsDef, clause);
-        return new SimpleDatabaseStatement(database, updateSQL);
+        return new GenericDatabaseStatement(database, updateSQL);
     }
 
     @Override
     public DatabaseStatement set(String clause) {
         String updateSQL = String.format(StatementTemplates.SET, tableName, clause);
-        return new SimpleDatabaseStatement(database, updateSQL);
+        return new GenericDatabaseStatement(database, updateSQL);
     }
 
     @Override
     public DatabaseStatement delete(String clause) {
         String deleteFromSQL = String.format(StatementTemplates.DELETE, tableName, clause);
-        return new SimpleDatabaseStatement(database, deleteFromSQL);
+        return new GenericDatabaseStatement(database, deleteFromSQL);
     }
 
     @Override
     public DatabaseStatement select(String clause) {
         String selectSQL = String.format(StatementTemplates.SELECT_ALL, tableName, clause);
-        return new SimpleDatabaseStatement(database, selectSQL);
+        return new GenericDatabaseStatement(database, selectSQL);
     }
 
     @Override
     public DatabaseStatement select(String clause, String... columns) {
         String columnsDef = String.join(", ", columns);
         String selectSQL = String.format(StatementTemplates.SELECT, columnsDef, tableName, clause);
-        return new SimpleDatabaseStatement(database, selectSQL);
+        return new GenericDatabaseStatement(database, selectSQL);
     }
 
     @Override
     public DatabaseStatement selectAll() {
         String selectSQL = String.format(StatementTemplates.SELECT_ALL, tableName, "");
-        return new SimpleDatabaseStatement(database, selectSQL);
+        return new GenericDatabaseStatement(database, selectSQL);
     }
 
     @Override
     public DatabaseStatement selectAll(String... columns) {
         String columnsDef = String.join(", ", columns);
         String selectSQL = String.format(StatementTemplates.SELECT, columnsDef, tableName, "");
-        return new SimpleDatabaseStatement(database, selectSQL);
+        return new GenericDatabaseStatement(database, selectSQL);
     }
 
 }

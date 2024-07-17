@@ -5,14 +5,14 @@ import io.github.pigaut.lib.sql.*;
 import java.sql.*;
 import java.util.*;
 
-public class SimpleDatabaseStatement implements DatabaseStatement {
+public class GenericDatabaseStatement implements DatabaseStatement {
 
     private final Database database;
     private String sql;
     private final List<StatementOption> options = new ArrayList<>();
     private int currentParameter = 1;
 
-    public SimpleDatabaseStatement(Database database, String sql) {
+    public GenericDatabaseStatement(Database database, String sql) {
         this.database = database;
         this.sql = sql;
     }

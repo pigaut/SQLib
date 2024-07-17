@@ -5,7 +5,7 @@ import io.github.pigaut.lib.sql.*;
 public abstract class AbstractDataTable extends GenericDataTable {
 
     public AbstractDataTable(Database database, String tableName) {
-        super(database, tableName);
+        super(tableName, database);
     }
 
 }

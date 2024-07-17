@@ -11,12 +11,12 @@ public class SQLib {
     private SQLib() {}
 
     /**
-     * Retrieves a DataSource configured to connect to a SQLite database file.
+     * Creates a HikariDataSource configured to connect to a SQLite database file.
      *
      * @param sqliteDatabaseFile The SQLite database file.
      * @return A DataSource configured to connect to the specified SQLite database file.
      */
-    public static DataSource getDataSource(File sqliteDatabaseFile) {
+    public static DataSource createDataSource(File sqliteDatabaseFile) {
         if (!sqliteDatabaseFile.exists()) {
             try {
                 sqliteDatabaseFile.getParentFile().mkdirs();
@@ -31,7 +31,7 @@ public class SQLib {
     }
 
     /**
-     * Retrieves a DataSource configured to connect to a database using provided parameters.
+     * Creates a HikariDataSource configured to connect to a database using provided parameters.
      *
      * @param databaseName The name of the database.
      * @param address      The address of the database server.
@@ -40,7 +40,7 @@ public class SQLib {
      * @param password     The password for authentication.
      * @return A DataSource configured to connect to the specified database.
      */
-    public static DataSource getDataSource(String databaseName, String address, String port, String username, String password) {
+    public static DataSource createDataSource(String databaseName, String address, String port, String username, String password) {
         HikariConfig config = new HikariConfig();
         String jdbcUrl = String.format("jdbc:%s://%s:%s/%s", databaseName, address, port, databaseName);
         config.setJdbcUrl(jdbcUrl);
@@ -57,7 +57,7 @@ public class SQLib {
      * @return A SimpleDatabase instance connected to the specified database file.
      */
     public static Database createDatabase(File file) {
-        DataSource dataSource = getDataSource(file);
+        DataSource dataSource = createDataSource(file);
         return new SimpleDatabase(removeExtension(file.getName()), dataSource);
     }
 
@@ -70,7 +70,7 @@ public class SQLib {
      */
     public static Database createDatabase(File parent, String name) {
         File dbFile = new File(parent, name + ".db");
-        DataSource dataSource = getDataSource(dbFile);
+        DataSource dataSource = createDataSource(dbFile);
         return new SimpleDatabase(name, dataSource);
     }
 
@@ -85,15 +85,14 @@ public class SQLib {
      * @return A SimpleDatabase instance connected to the specified database.
      */
     public static Database createDatabase(String name, String address, String port, String username, String password) {
-        DataSource dataSource = getDataSource(name, address, port, username, password);
+        DataSource dataSource = createDataSource(name, address, port, username, password);
         return new SimpleDatabase(name, dataSource);
     }
 
     private static String removeExtension(String fileName) {
         if (fileName == null) return null;
         int pos = fileName.lastIndexOf(".");
-        if (pos == -1) return fileName;
-        return fileName.substring(0, pos);
+        return pos == -1 ? fileName : fileName.substring(0, pos);
     }
 
 }
