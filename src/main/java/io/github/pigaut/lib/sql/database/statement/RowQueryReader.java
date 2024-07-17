@@ -1,4 +1,4 @@
-package com.github.pigaut.lib.sql.database.statement;
+package io.github.pigaut.lib.sql.database.statement;
 
 import java.sql.*;
 

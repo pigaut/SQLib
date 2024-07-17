@@ -1,7 +1,7 @@
-package com.github.pigaut.lib.sql;
+package io.github.pigaut.lib.sql;
 
-import com.github.pigaut.lib.sql.database.*;
 import com.zaxxer.hikari.*;
+import io.github.pigaut.lib.sql.database.*;
 import org.bukkit.plugin.*;
 
 import javax.sql.*;
@@ -49,19 +49,6 @@ public class SQLib {
         config.setPassword(password);
 
         return new HikariDataSource(config);
-    }
-
-    /**
-     * Creates a SimpleDatabase instance for a SQLite database found in the plugin folder
-     *
-     * @param plugin The Plugin instance.
-     * @param name   The name of the SQLite database file.
-     * @return A SimpleDatabase instance connected to the SQLite database.
-     */
-    public static Database createDatabase(Plugin plugin, String name) {
-        File dbFile = new File(plugin.getDataFolder(), name + ".db");
-        DataSource dataSource = getDataSource(dbFile);
-        return new SimpleDatabase(name, dataSource);
     }
 
     /**

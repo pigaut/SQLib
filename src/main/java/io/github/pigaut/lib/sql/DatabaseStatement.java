@@ -1,6 +1,6 @@
-package com.github.pigaut.lib.sql;
+package io.github.pigaut.lib.sql;
 
-import com.github.pigaut.lib.sql.database.statement.*;
+import io.github.pigaut.lib.sql.database.statement.*;
 
 public interface DatabaseStatement {
 

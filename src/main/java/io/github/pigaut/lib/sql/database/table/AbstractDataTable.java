@@ -1,6 +1,6 @@
-package com.github.pigaut.lib.sql.database.table;
+package io.github.pigaut.lib.sql.database.table;
 
-import com.github.pigaut.lib.sql.*;
+import io.github.pigaut.lib.sql.*;
 
 public abstract class AbstractDataTable extends GenericDataTable {
 

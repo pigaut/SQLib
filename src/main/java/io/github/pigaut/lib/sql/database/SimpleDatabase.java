@@ -1,8 +1,8 @@
-package com.github.pigaut.lib.sql.database;
+package io.github.pigaut.lib.sql.database;
 
-import com.github.pigaut.lib.sql.*;
-import com.github.pigaut.lib.sql.database.statement.*;
-import com.github.pigaut.lib.sql.database.table.*;
+import io.github.pigaut.lib.sql.*;
+import io.github.pigaut.lib.sql.database.statement.*;
+import io.github.pigaut.lib.sql.database.table.*;
 
 import javax.sql.*;
 import java.sql.*;

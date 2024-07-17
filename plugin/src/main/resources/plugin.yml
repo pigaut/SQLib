@@ -1,4 +1,4 @@
-main: com.github.pigaut.sqlib.SQLibPlugin
+main: io.github.pigaut.sqlib.SQLibPlugin
 name: SQLib
 author: pigaut
 description: ${project.description}
