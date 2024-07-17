@@ -1,7 +1,5 @@
 package io.github.pigaut.sqlib;
 
-import io.github.pigaut.lib.sql.*;
-import org.bukkit.*;
 import org.bukkit.plugin.java.*;
 
 public class SQLibPlugin extends JavaPlugin {
