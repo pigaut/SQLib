@@ -1,5 +1,3 @@
-Dependency Setup
-
 Add SQLib as a dependency in your pom.xml:
 
 xml
