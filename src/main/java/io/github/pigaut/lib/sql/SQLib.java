@@ -2,7 +2,6 @@ package io.github.pigaut.lib.sql;
 
 import com.zaxxer.hikari.*;
 import io.github.pigaut.lib.sql.database.*;
-import org.bukkit.plugin.*;
 
 import javax.sql.*;
 import java.io.*;
