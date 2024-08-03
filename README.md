@@ -1,4 +1,4 @@
-Add SQLib as a dependency in your pom.xml:
+Add SQLib as a maven dependency
 ```
 <dependency>
     <groupId>io.github.pigaut.lib.sql</groupId>
@@ -7,7 +7,7 @@ Add SQLib as a dependency in your pom.xml:
 </dependency>
 ```
 
-Shading with Maven Shade Plugin
+Shading
 ``` 
 <build>
     <plugins>
