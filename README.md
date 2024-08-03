@@ -3,7 +3,7 @@ Add SQLib as a maven dependency
 <dependency>
     <groupId>io.github.pigaut.lib.sql</groupId>
     <artifactId>SQLib</artifactId>
-    <version>1.1</version>
+    <version>1.2</version>
 </dependency>
 ```
 
