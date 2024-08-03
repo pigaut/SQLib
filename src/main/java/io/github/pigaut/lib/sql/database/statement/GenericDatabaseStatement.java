@@ -156,8 +156,27 @@ public class GenericDatabaseStatement implements DatabaseStatement {
     }
 
     @Override
-    public void executeRowQuery(RowQueryReader reader) {
-        executeQuery(reader);
+    public void fetchRow(QueryReader reader) {
+        executeStatement(preparedStatement -> {
+            try (ResultSet results = preparedStatement.executeQuery()) {
+                if (results.next()) {
+                    reader.read(results);
+                }
+            }
+            return null;
+        });
+    }
+
+    @Override
+    public void fetchAllRows(QueryReader reader) {
+        executeStatement(preparedStatement -> {
+            try (ResultSet results = preparedStatement.executeQuery()) {
+                while (results.next()) {
+                    reader.read(results);
+                }
+            }
+            return null;
+        });
     }
 
     @Override

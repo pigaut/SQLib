@@ -33,16 +33,16 @@ public class SQLib {
     /**
      * Creates a HikariDataSource configured to connect to a database using provided parameters.
      *
-     * @param databaseName The name of the database.
-     * @param address      The address of the database server.
+     * @param database     The name of the database.
+     * @param host         The address of the database server.
      * @param port         The port number of the database server.
      * @param username     The username for authentication.
      * @param password     The password for authentication.
      * @return A DataSource configured to connect to the specified database.
      */
-    public static DataSource createDataSource(String databaseName, String address, String port, String username, String password) {
+    public static DataSource createDataSource(String database, String host, String port, String username, String password) {
         HikariConfig config = new HikariConfig();
-        String jdbcUrl = String.format("jdbc:%s://%s:%s/%s", databaseName, address, port, databaseName);
+        String jdbcUrl = String.format("jdbc:mysql://%s:%s/%s", host, port, database);
         config.setJdbcUrl(jdbcUrl);
         config.setUsername(username);
         config.setPassword(password);
@@ -77,16 +77,16 @@ public class SQLib {
     /**
      * Creates a SimpleDatabase instance for a database using provided connection parameters.
      *
-     * @param name The name of the database.
-     * @param address      The address of the database server.
+     * @param database     The name of the database.
+     * @param host         The address of the database server.
      * @param port         The port number of the database server.
      * @param username     The username for authentication.
      * @param password     The password for authentication.
      * @return A SimpleDatabase instance connected to the specified database.
      */
-    public static Database createDatabase(String name, String address, String port, String username, String password) {
-        DataSource dataSource = createDataSource(name, address, port, username, password);
-        return new SimpleDatabase(name, dataSource);
+    public static Database createDatabase(String database, String host, String port, String username, String password) {
+        DataSource dataSource = createDataSource(database, host, port, username, password);
+        return new SimpleDatabase(database, dataSource);
     }
 
     private static String removeExtension(String fileName) {

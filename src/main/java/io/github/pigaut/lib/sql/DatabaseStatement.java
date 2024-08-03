@@ -150,11 +150,18 @@ public interface DatabaseStatement {
     void executeQuery(QueryReader reader);
 
     /**
-     * Executes a query SQL statement and processes the results with a RowQueryReader.
+     * Fetches the first row from the result set.
      *
-     * @param reader the QueryReader to process the query results
+     * @param reader the QueryReader to process the first row
      */
-    void executeRowQuery(RowQueryReader reader);
+    void fetchRow(QueryReader reader);
+
+    /**
+     * Fetches all rows from the result set.
+     *
+     * @param reader the QueryReader to process all rows
+     */
+    void fetchAllRows(QueryReader reader);
 
     /**
      * Executes a batch of SQL statements.
