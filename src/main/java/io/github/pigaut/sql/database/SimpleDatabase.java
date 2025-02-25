@@ -1,8 +1,9 @@
-package io.github.pigaut.lib.sql.database;
+package io.github.pigaut.sql.database;
 
-import io.github.pigaut.lib.sql.*;
-import io.github.pigaut.lib.sql.database.statement.*;
-import io.github.pigaut.lib.sql.database.table.*;
+import com.zaxxer.hikari.*;
+import io.github.pigaut.sql.*;
+import io.github.pigaut.sql.database.statement.*;
+import io.github.pigaut.sql.database.table.*;
 
 import javax.sql.*;
 import java.sql.*;
@@ -10,9 +11,9 @@ import java.sql.*;
 public class SimpleDatabase implements Database {
 
     private final String name;
-    private final DataSource dataSource;
+    private final HikariDataSource dataSource;
 
-    public SimpleDatabase(String name, DataSource dataSource) {
+    public SimpleDatabase(String name, HikariDataSource dataSource) {
         this.name = name;
         this.dataSource = dataSource;
     }
@@ -81,6 +82,11 @@ public class SimpleDatabase implements Database {
             }
             return null;
         });
+    }
+
+    @Override
+    public void closeConnection() {
+        dataSource.close();
     }
 
 }

@@ -1,7 +1,8 @@
-package io.github.pigaut.lib.sql.database.statement;
+package io.github.pigaut.sql.database.statement;
 
-import io.github.pigaut.lib.sql.*;
+import io.github.pigaut.sql.*;
 
+import java.io.*;
 import java.sql.*;
 import java.util.*;
 
@@ -131,6 +132,14 @@ public class GenericDatabaseStatement implements DatabaseStatement {
     }
 
     @Override
+    public DatabaseStatement withParameter(InputStream inputStream) {
+        final int parameterIndex = currentParameter;
+        options.add(stmt -> stmt.setBinaryStream(parameterIndex, inputStream));
+        currentParameter++;
+        return this;
+    }
+
+    @Override
     public boolean execute() {
         return executeStatement(PreparedStatement::execute);
     }
@@ -181,7 +190,6 @@ public class GenericDatabaseStatement implements DatabaseStatement {
 
     @Override
     public int[] executeBatch() {
-        addBatch();
         return executeStatement(PreparedStatement::executeBatch);
     }
 

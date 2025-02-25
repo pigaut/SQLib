@@ -1,4 +1,4 @@
-package io.github.pigaut.lib.sql;
+package io.github.pigaut.sql;
 
 public interface DataTable {
 

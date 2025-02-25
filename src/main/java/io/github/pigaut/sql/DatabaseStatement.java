@@ -1,6 +1,8 @@
-package io.github.pigaut.lib.sql;
+package io.github.pigaut.sql;
 
-import io.github.pigaut.lib.sql.database.statement.*;
+import io.github.pigaut.sql.database.statement.*;
+
+import java.io.*;
 
 public interface DatabaseStatement {
 
@@ -120,6 +122,8 @@ public interface DatabaseStatement {
      * @return the updated SimpleDatabaseStatement object
      */
     DatabaseStatement withParameter(double value);
+
+    DatabaseStatement withParameter(InputStream inputStream);
 
     /**
      * Executes the SQL statement.

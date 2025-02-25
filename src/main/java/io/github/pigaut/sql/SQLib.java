@@ -1,7 +1,7 @@
-package io.github.pigaut.lib.sql;
+package io.github.pigaut.sql;
 
 import com.zaxxer.hikari.*;
-import io.github.pigaut.lib.sql.database.*;
+import io.github.pigaut.sql.database.*;
 
 import javax.sql.*;
 import java.io.*;
@@ -13,20 +13,14 @@ public class SQLib {
     /**
      * Creates a HikariDataSource configured to connect to a SQLite database file.
      *
-     * @param sqliteDatabaseFile The SQLite database file.
+     * @param h2DatabaseFile The SQLite database file.
      * @return A DataSource configured to connect to the specified SQLite database file.
      */
-    public static DataSource createDataSource(File sqliteDatabaseFile) {
-        if (!sqliteDatabaseFile.exists()) {
-            try {
-                sqliteDatabaseFile.getParentFile().mkdirs();
-                sqliteDatabaseFile.createNewFile();
-            } catch (IOException e) {
-                throw new RuntimeException("Could not retrieve datasource because file creation failed.");
-            }
-        }
+    public static HikariDataSource createDataSource(File h2DatabaseFile) {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:sqlite:" + sqliteDatabaseFile.getAbsolutePath());
+        config.setDataSourceClassName("org.h2.jdbcx.JdbcDataSource");
+        config.setConnectionTestQuery("VALUES 1");
+        config.addDataSourceProperty("URL", "jdbc:h2:file:" + h2DatabaseFile.getAbsolutePath() + ";TRACE_LEVEL_FILE=0;DB_CLOSE_ON_EXIT=FALSE");
         return new HikariDataSource(config);
     }
 
@@ -40,7 +34,7 @@ public class SQLib {
      * @param password     The password for authentication.
      * @return A DataSource configured to connect to the specified database.
      */
-    public static DataSource createDataSource(String database, String host, String port, String username, String password) {
+    public static HikariDataSource createDataSource(String database, String host, String port, String username, String password) {
         HikariConfig config = new HikariConfig();
         String jdbcUrl = String.format("jdbc:mysql://%s:%s/%s", host, port, database);
         config.setJdbcUrl(jdbcUrl);
@@ -57,7 +51,7 @@ public class SQLib {
      * @return A SimpleDatabase instance connected to the specified database file.
      */
     public static Database createDatabase(File file) {
-        DataSource dataSource = createDataSource(file);
+        HikariDataSource dataSource = createDataSource(file);
         return new SimpleDatabase(removeExtension(file.getName()), dataSource);
     }
 
@@ -69,8 +63,8 @@ public class SQLib {
      * @return A SimpleDatabase instance connected to the specified database file.
      */
     public static Database createDatabase(File parent, String name) {
-        File dbFile = new File(parent, name + ".db");
-        DataSource dataSource = createDataSource(dbFile);
+        File dbFile = new File(parent, name);
+        HikariDataSource dataSource = createDataSource(dbFile);
         return new SimpleDatabase(name, dataSource);
     }
 
@@ -85,7 +79,7 @@ public class SQLib {
      * @return A SimpleDatabase instance connected to the specified database.
      */
     public static Database createDatabase(String database, String host, String port, String username, String password) {
-        DataSource dataSource = createDataSource(database, host, port, username, password);
+        HikariDataSource dataSource = createDataSource(database, host, port, username, password);
         return new SimpleDatabase(database, dataSource);
     }
 

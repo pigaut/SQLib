@@ -1,8 +1,8 @@
-package io.github.pigaut.lib.sql;
+package io.github.pigaut.sql;
 
-public class StatementTemplates {
+public class StatementTemplate {
 
-    private StatementTemplates() {}
+    private StatementTemplate() {}
 
     public static final String CREATE_TABLE = "CREATE TABLE %s (%s);";
     public static final String CREATE_TABLE_IF_NOT_EXISTS = "CREATE TABLE IF NOT EXISTS %s (%s);";

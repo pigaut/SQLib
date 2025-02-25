@@ -1,6 +1,6 @@
-package io.github.pigaut.lib.sql;
+package io.github.pigaut.sql;
 
-import io.github.pigaut.lib.sql.database.statement.*;
+import io.github.pigaut.sql.database.statement.*;
 
 import javax.sql.*;
 
@@ -66,5 +66,7 @@ public interface Database {
      * @param reader The QueryReader implementation to process the query results.
      */
     void executeQuery(String sql, QueryReader reader);
+
+    void closeConnection();
 
 }
